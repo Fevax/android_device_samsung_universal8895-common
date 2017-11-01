@@ -94,7 +94,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0
+    wifi.interface=wlan0 \
+    net.tethering.noprovisioning=true
 
 # Usb (temp)
 PRODUCT_PROPERTY_OVERRIDES += \
