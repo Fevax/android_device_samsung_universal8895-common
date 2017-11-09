@@ -193,6 +193,7 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd \
+    libbauthtzcommon_shim \
     fingerprint.exynos5
 
 # Offmode charger
