@@ -13,20 +13,20 @@
 #
 
 # Audio
-lib/hw/audio.primary.universal8895.so
-lib/libaudioroute.so
-lib/libaudioutils.so
-lib64/libaudioutils.so
-lib/librecordalive.so
-lib/libsamsungDiamondVoiceExtV4.so
-lib/libSamsungPostProcessConvertor.so
-lib/lib_SamsungRec_06003.so
-lib/libsecaudioinfo.so
-lib64/libsecaudioinfo.so
-lib/lib_soundaliveresampler.so
-lib/lib_SoundAlive_SRC384_ver300.so
-lib/libspeexresampler.so
-lib64/libspeexresampler.so
+#~ lib/hw/audio.primary.universal8895.so
+#~ lib/libaudioroute.so
+#~ lib/libaudioutils.so
+#~ lib64/libaudioutils.so
+#~ lib/librecordalive.so
+#~ lib/libsamsungDiamondVoiceExtV4.so
+#~ lib/libSamsungPostProcessConvertor.so
+#~ lib/lib_SamsungRec_06003.so
+#~ lib/libsecaudioinfo.so
+#~ lib64/libsecaudioinfo.so
+#~ lib/lib_soundaliveresampler.so
+#~ lib/lib_SoundAlive_SRC384_ver300.so
+#~ lib/libspeexresampler.so
+#~ lib64/libspeexresampler.so
 lib/libtinyalsa.so
 lib64/libtinyalsa.so
 lib/libtinycompress.so
@@ -38,25 +38,26 @@ vendor/firmware/APBiBF_AUDIO_SLSI.bin
 vendor/etc/audio_effects.conf
 vendor/etc/audio_policy.conf
 
-lib/soundfx/libeffectproxy.so
-lib/soundfx/libaudioeffectoffload.so
-lib/soundfx/libbundlewrapper.so
-lib/soundfx/libreverbwrapper.so
-lib/soundfx/libvisualizer.so
-lib/soundfx/libdownmix.so
-lib/libmysound.so
-lib/soundfx/libmyspace.so
-lib/libaudiosa.so
-lib/soundfx/libaudiosaplus_sec.so
-lib/soundfx/libldnhncr.so
-lib/libsamsungSoundbooster_plus.so
-lib/soundfx/libaudiopreprocessing.so
-lib/lib_SoundAlive_3DPosition_ver202.so
-lib/lib_SA_GoogleFX_ver124b.so
-lib/lib_SoundAlive_AlbumArt_ver105.so
-lib/lib_SoundAlive_play_plus_ver200.so
-lib/lib_SoundBooster_ver800.so
-lib/libHMT.so
+# AUDIOFX
+#~ lib/soundfx/libeffectproxy.so
+#~ lib/soundfx/libaudioeffectoffload.so
+#~ lib/soundfx/libbundlewrapper.so
+#~ lib/soundfx/libreverbwrapper.so
+#~ lib/soundfx/libvisualizer.so
+#~ lib/soundfx/libdownmix.so
+#~ lib/libmysound.so
+#~ lib/soundfx/libmyspace.so
+#~ lib/libaudiosa.so
+#~ lib/soundfx/libaudiosaplus_sec.so
+#~ lib/soundfx/libldnhncr.so
+#~ lib/libsamsungSoundbooster_plus.so
+#~ lib/soundfx/libaudiopreprocessing.so
+#~ lib/lib_SoundAlive_3DPosition_ver202.so
+#~ lib/lib_SA_GoogleFX_ver124b.so
+#~ lib/lib_SoundAlive_AlbumArt_ver105.so
+#~ lib/lib_SoundAlive_play_plus_ver200.so
+#~ lib/lib_SoundBooster_ver800.so
+#~ lib/libHMT.so
 
 # Bluetooth
 vendor/firmware/bcm4361A0_V0128.0000.hcd
@@ -355,46 +356,46 @@ etc/wifi/nvram_net.txt_r02g_b0
 etc/wifi/nvram_net.txt_r02j_b0
 
 #audiotest
-lib/hw/audio.a2dp.default.so
-lib/hw/audio.playback_record.default.so
-lib/hw/audio.primary.default.so
-lib/hw/audio.primary.goldfish.so
-lib/hw/audio.primary.universal8895.so
-lib/hw/audio.r_submix.default.so
-lib/hw/audio.tms.default.so
-lib/hw/audio.usb.default.so
-lib/hw/audio_policy.default.so
-lib/libapa.so
-lib/libapa_control.so
-lib/libaudiopolicyenginedefault.so
-lib/libaudiopolicymanager.so
-lib/libaudiopolicymanagerdefault.so
-lib/libaudiopolicyservice.so
-lib/libedmnativehelper.so
-lib/libfloatingfeature.so
-lib/libhiddensound.so
-lib/libjackshm.so
-lib/libjansson.so
-lib/libmediautils.so
-lib/libsetproperty.so
-lib/libspeexresampler.so
-lib64/hw/audio.primary.default.so
-lib64/hw/audio.primary.goldfish.so
-lib64/hw/audio.r_submix.default.so
-lib64/hw/audio.tms.default.so
-lib64/hw/audio.usb.default.so
-lib64/hw/audio_policy.default.so
-lib64/libaudiopolicyenginedefault.so
-lib64/libaudiopolicymanager.so
-lib64/libaudiopolicymanagerdefault.so
-lib64/libedmnativehelper.so
-lib64/libfloatingfeature.so
-lib64/libhiddensound.so
-lib64/libjackshm.so
-lib64/libjansson.so
-lib64/libmediautils.so
-lib64/libsetproperty.so
-lib64/libspeexresampler.so
-vendor/lib/libjack.so
-vendor/lib64/libjack.so
+#~ lib/hw/audio.a2dp.default.so
+#~ lib/hw/audio.playback_record.default.so
+#~ lib/hw/audio.primary.default.so
+#~ lib/hw/audio.primary.goldfish.so
+#~ lib/hw/audio.primary.universal8895.so
+#~ lib/hw/audio.r_submix.default.so
+#~ lib/hw/audio.tms.default.so
+#~ lib/hw/audio.usb.default.so
+#~ lib/hw/audio_policy.default.so
+#~ lib/libapa.so
+#~ lib/libapa_control.so
+#~ lib/libaudiopolicyenginedefault.so
+#~ lib/libaudiopolicymanager.so
+#~ lib/libaudiopolicymanagerdefault.so
+#~ lib/libaudiopolicyservice.so
+#~ lib/libedmnativehelper.so
+#~ lib/libfloatingfeature.so
+#~ lib/libhiddensound.so
+#~ lib/libjackshm.so
+#~ lib/libjansson.so
+#~ lib/libmediautils.so
+#~ lib/libsetproperty.so
+#~ lib/libspeexresampler.so
+#~ lib64/hw/audio.primary.default.so
+#~ lib64/hw/audio.primary.goldfish.so
+#~ lib64/hw/audio.r_submix.default.so
+#~ lib64/hw/audio.tms.default.so
+#~ lib64/hw/audio.usb.default.so
+#~ lib64/hw/audio_policy.default.so
+#~ lib64/libaudiopolicyenginedefault.so
+#~ lib64/libaudiopolicymanager.so
+#~ lib64/libaudiopolicymanagerdefault.so
+#~ lib64/libedmnativehelper.so
+#~ lib64/libfloatingfeature.so
+#~ lib64/libhiddensound.so
+#~ lib64/libjackshm.so
+#~ lib64/libjansson.so
+#~ lib64/libmediautils.so
+#~ lib64/libsetproperty.so
+#~ lib64/libspeexresampler.so
+#~ vendor/lib/libjack.so
+#~ vendor/lib64/libjack.so
 
