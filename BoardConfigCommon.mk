@@ -79,7 +79,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # F2FS support
 TARGET_USERIMAGES_USE_F2FS := true
 # Disable Block based zips (makes korean versions compatible)
-BOARD_DISABLE_BLOCK_BASED_OTA := TRUE
+BLOCK_BASED_OTA := false
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
