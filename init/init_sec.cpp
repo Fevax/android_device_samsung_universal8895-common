@@ -48,6 +48,8 @@ static device_variant parse_variant(std::string bl) {
         ret = VARIANT_G955L;
     else if (bl.find("G955W8") != std::string::npos)
         ret = VARIANT_G955W8;
+    else if (bl.find("N950F") != std::string::npos)
+        ret = VARIANT_G955W8;
 
     return ret;
 }
@@ -61,8 +63,10 @@ static device_variant get_variant_from_cmdline()
         INFO("Unknown bootloader id: %s, forcing international (F) variant\n", bootloader.c_str());
         if (bootloader.find("G950") != std::string::npos)
             ret = VARIANT_G950F;
-        else
+        else if (bootloader.find("G955") != std::string::npos)
             ret = VARIANT_G955F;
+        else if (bootloader.find("N950") != std::string::npos)
+            ret = VARIANT_N950F
     }
 
     return ret;
@@ -144,6 +148,13 @@ void vendor_load_properties()
         description = "dream2ltebmc-user 7.0 NRD90M G955W8XXU1AQH3 release-keys";
         model = "SM-G955W8";
         device = "dream2ltebmc";
+        break;
+    case VARIANT_N950F:
+        /* greatltexx */
+        fingerprint = "samsung/greatltexx/greatlte:7.1.1/NMF26X/N950FXXU1AQI1:user/release-keys";
+        description = "greatltexx-user 7.1.1 NMF26X N950FXXU1AQI1 release-keys";
+        model = "SM-N950F";
+        device = "greatltexx";
         break;
     default:
         break;
