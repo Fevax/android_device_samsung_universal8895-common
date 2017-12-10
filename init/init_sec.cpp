@@ -49,7 +49,7 @@ static device_variant parse_variant(std::string bl) {
     else if (bl.find("G955W8") != std::string::npos)
         ret = VARIANT_G955W8;
     else if (bl.find("N950F") != std::string::npos)
-        ret = VARIANT_G955W8;
+        ret = VARIANT_N950F;
 
     return ret;
 }
