@@ -9,5 +9,6 @@ enum device_variant {
     VARIANT_G955K,
     VARIANT_G955L,
     VARIANT_G955W8,
+    VARIANT_N950F,
     VARIANT_MAX
 };
