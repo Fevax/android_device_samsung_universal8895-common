@@ -100,3 +100,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Usb (temp)
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb
+
+# sdcardfs
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.sys.sdcardfs=false

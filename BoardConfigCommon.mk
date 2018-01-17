@@ -61,7 +61,7 @@ BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-TARGET_USES_UNCOMPRESSED_KERNEL := true
+BOARD_KERNEL_IMAGE_NAME := Image
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE     :=  41943040 #(40960 sda7)
@@ -94,8 +94,8 @@ TARGET_POWERHAL_VARIANT := samsung
 TARGET_SEC_FP_HAL_VARIANT := bauth
 
 # Samsung Hardware
-BOARD_HARDWARE_CLASS += device/samsung/universal8895-common/cmhw
-BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
+BOARD_HARDWARE_CLASS += device/samsung/universal8895-common/lineagehw
+BOARD_HARDWARE_CLASS += hardware/samsung/lineageos
 
 # Samsung Camera
 BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
@@ -114,6 +114,7 @@ BOARD_HDMI_INCAPABLE := true
 BOARD_USES_SKIA_FIMGAPI := true
 # (G)SCALER
 BOARD_USES_SCALER := true
+BOARD_USES_DT := true
 # Samsung OpenMAX Video
 BOARD_USE_STOREMETADATA := true
 BOARD_USE_METADATABUFFERTYPE := true
@@ -132,6 +133,7 @@ TARGET_USES_64_BIT_BCMDHD        := true
 BOARD_WLAN_DEVICE                := bcmdhd
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+WPA_SUPPLICANT_USE_HIDL          := true
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
@@ -144,10 +146,14 @@ WIFI_BAND                        := 802_11_ABG
 BOARD_HAVE_SAMSUNG_WIFI := true
 
 # Charger
+WITH_LINEAGE_CHARGER := false
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
+
+# Usb
+TARGET_USES_LEGACY_ADB_INTERFACE := true
 
 # Healthd
 RED_LED_PATH := "/sys/class/leds/led_r/brightness"
@@ -156,11 +162,11 @@ BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
 BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 
 # RIL
-BOARD_VENDOR := samsung
+#BOARD_VENDOR := samsung
 BOARD_MODEM_TYPE := ss333
 
 # RIL.java overwrite
-BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
+#BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 
 # Boot animation
 TARGET_BOOTANIMATION_PRELOAD := true

@@ -78,27 +78,54 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
-# Graphics
+# Graphics / Display
 PRODUCT_AAPT_CONFIG := xlarge large
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 # A list of dpis to select prebuilt apk, in precedence order.
 PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi
 
 PRODUCT_PACKAGES += \
-    gralloc.exynos5
+    #gralloc.exynos5
 
 PRODUCT_PACKAGES += \
-    libion \
-    libfimg
+    libion_exynos \
+    libfimg \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.composer@2.1-service \
+    android.hardware.graphics.mapper@2.0-impl \
+    libhwc2on1adapter
 
 # hardware/samsung/AdvancedDisplay (MDNIE)
+#PRODUCT_PACKAGES += \
+    #AdvancedDisplay
+
+# RenderScript HAL
 PRODUCT_PACKAGES += \
-    AdvancedDisplay
+    android.hardware.renderscript@1.0-impl \
+
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-service \
+    android.hardware.drm@1.0-service.widevine
+
+# Gatekeeper HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-impl \
+    android.hardware.gatekeeper@1.0-service
+
+# Memory
+PRODUCT_PACKAGES += \
+    android.hardware.memtrack@1.0-impl 
 
 # Radio
 PRODUCT_PACKAGES += \
     libxml2 \
-    libprotobuf-cpp-full
+    libprotobuf-cpp-full \
+    android.hardware.radio@1.0 \
+    android.hardware.radio.deprecated@1.0 \
 
 PRODUCT_PACKAGES += \
     libsecril-client \
@@ -124,7 +151,10 @@ PRODUCT_PACKAGES += \
     wifiloader \
     hostapd \
     libwpa_client \
-    wpa_supplicant
+    wpa_supplicant \
+    android.hardware.wifi@1.0-service \
+    android.hardware.wifi@1.0 \
+    android.hardware.wifi@1.0-impl
 
 # external/wpa_supplicant_8/wpa_supplicant/wpa_supplicant_conf.mk
 PRODUCT_PACKAGES += \
@@ -157,7 +187,9 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     audio.r_submix.default \
     audio.primary.universal8895 \
-    libtinycompress
+    libtinycompress \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -173,6 +205,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml \
     $(LOCAL_PATH)/configs/gps/lhd.conf:system/etc/lhd.conf
 
+# Sensorhub
+PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl \
+    android.hardware.vibrator@1.0-impl
+
 # Touchscreen
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/idc/ft5x06_ts.idc:system/usr/idc/ft5x06_ts.idc \
@@ -182,19 +219,43 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/samsung.kl:system/usr/keylayout/samsung.kl \
 
+# Keymaster
+PRODUCT_PACKAGES += \
+    keystore.exynos5 \
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service
+
 # Power
 PRODUCT_PACKAGES += \
-    power.universal8895
+    power.universal8895 \
+    android.hardware.power@1.0-impl
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.universal8895
+    lights.universal8895 \
+    android.hardware.light@2.0-impl
 
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd \
     libbauthtzcommon_shim \
-    fingerprint.exynos5
+    fingerprint.exynos5 \
+    android.hardware.biometrics.fingerprint@2.1-service
+
+# HIDL
+PRODUCT_PACKAGES += \
+    android.hidl.base@1.0 \
+    android.hidl.manager@1.0-java
+
+# Healthd
+PRODUCT_PACKAGES += \
+    android.hardware.health@1.0-convert \
+    android.hardware.health@1.0-impl \
+    android.hardware.health@1.0-service \
+
+# USB
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service \
 
 # Offmode charger
 PRODUCT_PACKAGES += \
