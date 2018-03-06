@@ -95,7 +95,7 @@ TARGET_SEC_FP_HAL_VARIANT := bauth
 
 # Samsung Hardware
 BOARD_HARDWARE_CLASS += device/samsung/universal8895-common/lineagehw
-BOARD_HARDWARE_CLASS += hardware/samsung/lineageos
+BOARD_HARDWARE_CLASS += hardware/samsung/lineagehw
 
 # Samsung Camera
 BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
@@ -162,7 +162,8 @@ BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
 BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 
 # RIL
-#BOARD_VENDOR := samsung
+#BOARD_PROVIDES_LIBRIL := true
+BOARD_VENDOR := samsung
 BOARD_MODEM_TYPE := ss333
 
 # RIL.java overwrite
@@ -175,10 +176,13 @@ TARGET_SCREEN_HEIGHT := 2048
 TARGET_SCREEN_WIDTH := 1536
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_sec
+#TARGET_INIT_VENDOR_LIB := libinit_sec
 
 # Properties
 TARGET_SYSTEM_PROP := device/samsung/universal8895-common/system.prop
+
+# Manifest
+DEVICE_MANIFEST_FILE += device/samsung/universal8895-common/manifest.xml
 
 # Release tools
 TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
