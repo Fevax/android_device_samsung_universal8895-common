@@ -1,0 +1,47 @@
+# gpsd - GPS daemon
+type gpsd, domain;
+type gpsd_exec, exec_type, file_type;
+
+init_daemon_domain(gpsd)
+net_domain(gpsd)
+allow gpsd gps_data_file:dir rw_dir_perms;
+allow gpsd gps_data_file:notdevfile_class_set create_file_perms;
+# Socket is created by the daemon, not by init, and under /data/gps,
+# not under /dev/socket.
+type_transition gpsd gps_data_file:sock_file gps_socket;
+allow gpsd gps_socket:sock_file create_file_perms;
+# XXX Label sysfs files with a specific type?
+allow gpsd sysfs:file rw_file_perms;
+
+# TODO: added to match above sysfs rule. Remove me?
+allow gpsd sysfs_usb:file w_file_perms;
+
+allow gpsd gps_device:chr_file rw_file_perms;
+
+# Execute the shell or system commands.
+allow gpsd shell_exec:file rx_file_perms;
+allow gpsd system_file:file rx_file_perms;
+allow gpsd toolbox_exec:file rx_file_perms;
+
+
+# Automatically label files created in /data/system/gps as gps_data_file
+file_type_auto_trans(gpsd, system_data_file, gps_data_file)
+
+# Allow rild to connect to gpsd
+unix_socket_connect(gpsd, property, rild)
+
+allow gpsd system_server:unix_stream_socket { read write setopt };
+
+binder_call(gpsd, system_server)
+binder_use(gpsd)
+
+# allow gpsd self:netlink_kobject_uevent_socket create_socket_perms;
+
+allow gpsd gps_device:chr_file { getattr setattr };
+allow gpsd gps_data_file:dir { search write add_name remove_name };
+allow gpsd gps_data_file:file { create rw_file_perms };
+allow gpsd gps_data_file:fifo_file { unlink create setattr getattr rw_file_perms };
+
+allow gpsd sysfs_wake_lock:file rw_file_perms;
+
+allow gpsd sensorservice_service:service_manager { find };
