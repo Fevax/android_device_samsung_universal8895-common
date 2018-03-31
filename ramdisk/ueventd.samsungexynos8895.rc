@@ -50,9 +50,10 @@
 
 # mscalers
 /dev/video50              0660   media      graphics
-/dev/m2m1shot_scaler0     0660   cameraserver      m2mscaler
+/dev/m2m1shot_scaler0     0660   mediacodec      drmrpc
 
 /dev/video55              0666   system     graphics
+/dev/g2d                  0660   system     graphics
 /dev/fimg2d               0666   system     graphics
 /dev/i2c-2                0660   system     system
 /dev/HPD                  0660   system     system
@@ -132,16 +133,6 @@
 #temporary
 /data/modem.bin           0400   radio      system
 
-# DM tools
-/dev/umts_dm0             0660   radio      radio
-/dev/umts_router          0660   radio      radio
-
-# SIPC RIL
-/dev/umts_boot0           0660   radio      radio
-/dev/umts_ipc0            0660   radio      radio
-/dev/umts_ipc1            0660   radio      radio
-/dev/umts_rfs0            0660   radio      radio
-
 # Modem Interface
 /dev/block/platform/11120000.ufs/by-name/RADIO	0660   system     radio
 /dev/block/platform/11120000.ufs/by-name/CP_DEBUG	0660	radio	system
@@ -163,8 +154,6 @@
 /sys/devices/system/cpu/cpu*	cpufreq/interactive/input_boost			0660	system	system
 /sys/devices/system/cpu/cpu*	cpufreq/interactive/boostpulse_duration		0660	system	system
 /sys/devices/system/cpu/cpu*	cpufreq/interactive/io_is_busy			0660	system	system
-/sys/devices/system/cpu/cpu*	cpufreq/interactive/param_index			0660	system	system
-/sys/devices/system/cpu/cpu*	cpufreq/interactive/mode				0660	system	system
 
 # Vision (VPU, SCORE)
 /dev/vertex0             0660   media      media
@@ -200,25 +189,14 @@
 # Reactivation lock
 /dev/block/platform/11120000.ufs/by-name/STEADY    0660    system    system
 
-# CDMA radio interface MUX
-/dev/ts0710mux*           0640   radio      radio
-/dev/ppp                  0660   radio      vpn
+# MobiCore
+/dev/mobicore             0700   system     system
+/dev/mobicore-user        0666   radio     system
 
-# sysfs properties
-/sys/devices/platform/trusty.*      trusty_version        0440  root   log
-/sys/devices/virtual/input/input*   enable      0660  root   input
-/sys/devices/virtual/input/input*   poll_delay  0660  root   input
-/sys/devices/virtual/usb_composite/*   enable      0664  root   system
-/sys/devices/system/cpu/cpu*   cpufreq/scaling_max_freq   0664  system system
-/sys/devices/system/cpu/cpu*   cpufreq/scaling_min_freq   0664  system system
-
-# DVB API device nodes
-/dev/dvb*                 0660   root       system
-
-# sensorhub
-/dev/ssp_sensorhub        0660   system     system
-/dev/ssp_data_injection   0660   system     system
+# Secure MEM driver
+/dev/s5p-smem             0660   system     system
 
 # Fingerprint Sensor
-/dev/vfsspi        0660   system     system
-/dev/esfp0        0660   system     system
+/dev/vfsspi               0660   system     system
+/dev/esfp0                0660   system     system
+/dev/goodix_fp            0660   system     system

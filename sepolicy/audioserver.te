@@ -2,7 +2,6 @@
 unix_socket_connect(audioserver, property, rild);
 
 # /efs/maxim
-allow audioserver { sensor_efs_file imei_efs_file efs_file sec_efs_file }:dir r_dir_perms;
-allow audioserver { sensor_efs_file imei_efs_file efs_file sec_efs_file }:file r_file_perms;
-allow audioserver init:unix_stream_socket { connectto };
+allow audioserver { efs_file sec_efs_file }:dir r_dir_perms;
+allow audioserver { efs_file sec_efs_file }:file r_file_perms;
 

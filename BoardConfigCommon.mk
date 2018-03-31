@@ -25,7 +25,7 @@ TARGET_NO_RADIOIMAGE := true
 
 # Platform
 TARGET_BOARD_PLATFORM := exynos5
-TARGET_SLSI_VARIANT := cm
+TARGET_SLSI_VARIANT := bsp
 TARGET_SOC := exynos8895
 TARGET_BOOTLOADER_BOARD_NAME := universal8895
 
@@ -42,9 +42,6 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53.a57
 
-# CPUsets
-ENABLE_CPUSETS := true
-
 # Binder
 TARGET_USES_64_BIT_BINDER := true
 
@@ -52,6 +49,7 @@ TARGET_USES_64_BIT_BINDER := true
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
+BOARD_KERNEL_IMAGE_NAME := Image
 #BOARD_KERNEL_CMDLINE := The bootloader ignores the cmdline from the boot.img
 BOARD_KERNEL_SEPARATED_DT := true
 TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
@@ -61,7 +59,7 @@ BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-BOARD_KERNEL_IMAGE_NAME := Image
+TARGET_LINUX_KERNEL_VERSION := 3.18 #BSPFLAG
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE     :=  41943040 #(40960 sda7)
@@ -78,8 +76,12 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
 # F2FS support
 TARGET_USERIMAGES_USE_F2FS := true
-# Disable Block based zips (makes korean versions compatible)
-BLOCK_BASED_OTA := false
+# Extended Filesystem Support
+TARGET_EXFAT_DRIVER := sdfat
+TARGET_USES_MKE2FS := true
+
+# Vendor separation
+TARGET_COPY_OUT_VENDOR := system/vendor
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -94,28 +96,16 @@ TARGET_POWERHAL_VARIANT := samsung
 TARGET_SEC_FP_HAL_VARIANT := bauth
 
 # Samsung Hardware
-BOARD_HARDWARE_CLASS += device/samsung/universal8895-common/lineagehw
-BOARD_HARDWARE_CLASS += hardware/samsung/lineagehw
-
-# Samsung Camera
-BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
+BOARD_HARDWARE_CLASS := hardware/samsung/lineagehw $(LOCAL_PATH)/lineagehw
 
 # Graphics
-BOARD_USES_HWC_SERVICES := true
 USE_OPENGL_RENDERER := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+BOARD_USES_EXYNOS5_COMMON_GRALLOC := true
 
-# Renderscript
-BOARD_OVERRIDE_RS_CPU_VARIANT_32 := cortex-a53.a57
-BOARD_OVERRIDE_RS_CPU_VARIANT_64 := exynos-m1
+# VR Front buffer
+#BOARD_USES_VR_FRONT_BUFFER := true
 
-# HDMI
-BOARD_HDMI_INCAPABLE := true
-# FIMG2D
-BOARD_USES_SKIA_FIMGAPI := true
-# (G)SCALER
-BOARD_USES_SCALER := true
-BOARD_USES_DT := true
 # Samsung OpenMAX Video
 BOARD_USE_STOREMETADATA := true
 BOARD_USE_METADATABUFFERTYPE := true
@@ -126,8 +116,50 @@ BOARD_USE_NON_CACHED_GRAPHICBUFFER := true
 BOARD_USE_GSC_RGB_ENCODER := true
 BOARD_USE_CSC_HW := false
 BOARD_USE_QOS_CTRL := false
-BOARD_USE_S3D_SUPPORT := true
-BOARD_USE_VP8ENC_SUPPORT := true
+BOARD_USE_S3D_SUPPORT := false
+BOARD_USE_TIMESTAMP_REORDER_SUPPORT := true
+BOARD_USE_DEINTERLACING_SUPPORT := true
+BOARD_USE_VP8ENC_SUPPORT := false
+BOARD_USE_HEVCDEC_SUPPORT := true
+BOARD_USE_HEVCENC_SUPPORT := true
+BOARD_USE_HEVC_HWIP := false
+BOARD_USE_VP9DEC_SUPPORT := true
+BOARD_USE_VP9ENC_SUPPORT := false
+BOARD_USE_CUSTOM_COMPONENT_SUPPORT := true
+BOARD_USE_VIDEO_EXT_FOR_WFD_HDCP := true
+BOARD_USE_SINGLE_PLANE_IN_DRM := true
+
+# HWComposer
+BOARD_USES_VPP := true
+#BOARD_USES_VPP_V2 := true // 8890 only
+BOARD_HDMI_INCAPABLE := true
+
+# HWCServices - requires framework support
+#BOARD_USES_HWC_SERVICES := true
+
+# Device Tree
+BOARD_USES_DT := true
+
+# WiFiDisplay
+#BOARD_USES_VIRTUAL_DISPLAY := true - depends on platform changes
+BOARD_USES_VIRTUAL_DISPLAY_DECON_EXT_WB := false
+BOARD_USE_VIDEO_EXT_FOR_WFD_DRM := false
+BOARD_USES_VDS_BGRA8888 := true
+BOARD_VIRTUAL_DISPLAY_DISABLE_IDMA_G0 := false
+
+# LIBHWJPEG
+TARGET_USES_UNIVERSAL_LIBHWJPEG := true
+
+# FIMG2D
+BOARD_USES_SKIA_FIMGAPI := true
+BOARD_USES_FIMGAPI_V5X := true
+
+# SCALER
+BOARD_USES_DEFAULT_CSC_HW_SCALER := true
+BOARD_USES_SCALER_M2M1SHOT := true
+
+# Video scaling issue workaround
+TARGET_OMX_LEGACY_RESCALING := true
 
 # Wifi
 TARGET_USES_64_BIT_BCMDHD        := true
@@ -143,7 +175,7 @@ WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
 WIFI_BAND                        := 802_11_ABG
 
-# Wifi Macloader
+# Wifi loader
 BOARD_HAVE_SAMSUNG_WIFI := true
 
 # Charger
@@ -153,9 +185,6 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
 
-# Usb
-TARGET_USES_LEGACY_ADB_INTERFACE := true
-
 # Healthd
 RED_LED_PATH := "/sys/class/leds/led_r/brightness"
 GREEN_LED_PATH := "/sys/class/leds/led_g/brightness"
@@ -163,27 +192,15 @@ BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
 BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 
 # RIL
-#BOARD_PROVIDES_LIBRIL := true
+BOARD_PROVIDES_LIBRIL := true
 BOARD_VENDOR := samsung
 BOARD_MODEM_TYPE := ss333
-
-# RIL.java overwrite
-#BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
-
-# Boot animation
-TARGET_BOOTANIMATION_PRELOAD := true
-TARGET_BOOTANIMATION_TEXTURE_CACHE := true
-TARGET_SCREEN_HEIGHT := 2048
-TARGET_SCREEN_WIDTH := 1536
+BOARD_PROVIDES_LIBRIL := true
+BOARD_NEEDS_ROAMING_PROTOCOL_FIELD := true
+BOARD_NEEDS_IMS_TYPE_FIELD := true
 
 # Init
 #TARGET_INIT_VENDOR_LIB := libinit_sec
-
-# Properties
-TARGET_SYSTEM_PROP := device/samsung/universal8895-common/system.prop
-
-# Manifest
-DEVICE_MANIFEST_FILE += device/samsung/universal8895-common/manifest.xml
 
 # Release tools
 TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
@@ -195,21 +212,14 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/ramdisk/fstab.samsungexynos8895
 
 # TWRP
 ifeq ($(RECOVERY_VARIANT),twrp)
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/twrp.fstab
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
-TW_THEME := portrait_hdpi
-TW_BRIGHTNESS_PATH := /sys/class/backlight/panel/brightness
-TW_MAX_BRIGHTNESS := 180
-TW_NO_REBOOT_BOOTLOADER := true
-TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_NTFS_3G := true
-TW_HAS_DOWNLOAD_MODE := true
-TW_NO_EXFAT_FUSE := true
-TW_EXCLUDE_SUPERSU := true
+include $(LOCAL_PATH)/twrp.mk
 endif
 
 # Seccomp filters
-BOARD_SECCOMP_POLICY += $(LOCAL_PATH)/seccomp
+BOARD_SECCOMP_POLICY += device/samsung/universal8895-common/seccomp
 
 # SELinux
-BOARD_SEPOLICY_DIRS := $(LOCAL_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += device/samsung/universal8895-common/sepolicy
+
+# Shims
+TARGET_LD_SHIM_LIBS := /system/lib64/libbauthserver.so|libbauthtzcommon_shim.so:/system/lib/libcamera_client.so|libcamera_client_shim.so:/system/lib/libexynoscamera.so|libexynoscamera_shim.so:/system/lib64/libstagefright.so|libstagefright_shim.so:/system/lib/libstagefright.so|libstagefright_shim.so

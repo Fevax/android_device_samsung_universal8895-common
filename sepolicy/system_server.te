@@ -14,12 +14,15 @@ type_transition system_server system_data_file:fifo_file gps_data_file ".gps.int
 allow system_server gps_data_file:fifo_file create_file_perms;
 allow system_server gps_data_file:dir rw_dir_perms;
 
+# /data/system/gps/chip.info
+allow system_server gps_data_file:file r_file_perms;
+
 # /efs/prox_cal
 allow system_server efs_file:file r_file_perms;
 
 # /efs/FactoryApp
 allow system_server app_efs_file:dir r_dir_perms;
-allow system_server app_efs_file:file { setattr r_file_perms};
+allow system_server app_efs_file:file r_file_perms;
 
 # WifiMachine
 allow system_server self:capability { sys_module };
@@ -47,3 +50,5 @@ allow system_server fimg2d_video_device:chr_file rw_file_perms;
 
 allow system_server data_user_file:dir rw_dir_perms;
 allow system_server data_user_file:file rw_file_perms;
+# /data/system/gps/xtraee.bin
+allow system_server gps_data_file:file rw_file_perms;
